@@ -1,0 +1,3 @@
+[submodule "bestdori"]
+	path = bestdori
+	url = https://github.com/zhanbao2000/bestdori.git

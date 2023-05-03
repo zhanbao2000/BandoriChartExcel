@@ -1,0 +1,38 @@
+name: Generate newest xlsx file
+
+
+on:
+  push:
+    branches:
+      - master
+
+  pull_request:
+    branches:
+      - master
+
+  schedule:
+    - cron: "0 0 * * 0"
+
+  workflow_dispatch:
+
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v2
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Generate xlsx file
+        run: python main.py
+
+      - name: upload
+        uses: actions/upload-artifact@v3
+        with:
+          name: bestdori_charts
+          path: bestdori_charts.xlsx

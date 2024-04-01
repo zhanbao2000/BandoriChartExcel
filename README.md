@@ -7,6 +7,10 @@
 
 Auto run script on every Sunday (UTC 0:00) to crawl all EXPERT and SPECIAL chart metadata on [bestdori.com](https://bestdori.com).
 
+注意：现在你无需再去本项目的 [Actions](https://github.com/zhanbao2000/BandoriChartExcel/actions) 页面 获取最新的 Excel 文件，你可以直接在 [Releases](https://github.com/zhanbao2000/BandoriChartExcel/releases) 页面下载最新的 Excel 文件。
+
+Note: Now you don't need to go to [Actions](https://github.com/zhanbao2000/BandoriChartExcel/actions) page of this repo to get the latest Excel file, you can download the latest Excel file directly in [Releases](https://github.com/zhanbao2000/BandoriChartExcel/releases) page.
+
 ## 运行方式 Usage
 
 你只需要登录 GitHub，然后进入该仓库的 [Actions](https://github.com/zhanbao2000/BandoriChartExcel/actions) 页面并点击最新的工作流，找到页面最下方的 `Artifacts` 并下载即可。

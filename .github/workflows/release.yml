@@ -1,0 +1,53 @@
+name: Generate newest xlsx file
+
+
+on:
+  schedule:
+    - cron: "0 0 * * 0"
+
+  workflow_dispatch:
+
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v2
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Update all submodules
+        run: git submodule update --init --recursive
+
+      - name: Generate xlsx file
+        run: python main.py
+
+      - name: Get the current date and time
+        id: date
+        run: echo "::set-output name=date::$(date +'%Y%m%d%H%M%S')"
+
+      - name: Create release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ steps.date.outputs.date }}
+          release_name: Release ${{ steps.date.outputs.date }}
+          draft: false
+          prerelease: false
+
+      - name: Upload release asset
+        id: upload-release-asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./bestdori_charts.xlsx
+          asset_name: bestdori_charts.xlsx
+          asset_content_type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet

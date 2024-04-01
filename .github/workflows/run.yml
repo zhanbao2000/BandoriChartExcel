@@ -34,7 +34,7 @@ jobs:
       - name: Generate xlsx file
         run: python main.py
 
-      - name: upload
+      - name: Upload
         uses: actions/upload-artifact@v3
         with:
           name: bestdori_charts

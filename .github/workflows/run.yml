@@ -35,7 +35,7 @@ jobs:
         run: python main.py
 
       - name: Upload
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: bestdori_charts
           path: bestdori_charts.xlsx
